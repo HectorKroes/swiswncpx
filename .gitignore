@@ -1,0 +1,8 @@
+data/GDC/BRCA
+data/GDC/COAD
+data/GDC/LUAD
+data/GDC/LUSC
+data/GDC/PRAD
+.nextflow.log
+.nextflow/
+work/
