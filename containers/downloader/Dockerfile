@@ -2,6 +2,7 @@ FROM ubuntu:22.04
 
 MAINTAINER hfkroes
 
+# Installing necessary dependencies
 RUN  apt-get update \
   && apt-get install -y wget \
   && apt-get install -y unzip
@@ -21,5 +22,6 @@ RUN mkdir gdc-client \
 	&& rm gdc-client.zip \
 	&& chmod +x /gdc-client/gdc-client
 
+# Adding tools to path
 ENV PATH=${PATH}:/sra-toolkit/sratoolkit.3.0.2-ubuntu64/bin
 ENV PATH=${PATH}:/gdc-client

@@ -15,6 +15,7 @@ include { downloadGDCdata } from './subworkflows/downloader'
 include { downloadSRAdata } from './subworkflows/downloader'
 include { grepGeneFPKM } from './subworkflows/correlations'
 include { reportCorrelations } from './subworkflows/correlations'
+include { allignData } from './subworkflows/rnaseq'
 
 workflow {
 	
@@ -24,12 +25,10 @@ workflow {
     .splitCsv()
   downloadGDCdata(gdc_manifest)
 
-/*
   //Downloading RNA-seq data provided by the authors
   rna_seq_manifest = file('./data/SRA/RNA_seq_manifest.txt')
   rna_seq_accessions = rna_seq_manifest.readLines().flatten()
   downloadSRAdata(rna_seq_accessions, 'rna_seq_data')
-*/
 
   //Grepping genes FPKM data into formatted files
   genes = Channel.from(
@@ -43,4 +42,12 @@ workflow {
   //Creating FPKM correlations report
   corr_rep = Channel.fromPath('./rscripts/correlations.Rmd')
   reportCorrelations(grepGeneFPKM.out.collect(), corr_rep)
+
+  /*
+  //Align RNA-seq data with STAR
+  rna_seq_paired = Channel
+    .fromFilePairs('./data/SRA/rna_seq_data/SRR**_{1,2}.fastq')
+  allignData(rna_seq_paired)
+  */
+  
 }

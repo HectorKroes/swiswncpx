@@ -51,6 +51,6 @@ process downloadSRAdata {
     """
     mkdir ${category}
     cd ${category}
-    fastq-dump ${accession} --split-spot --skip-technical
+    fastq-dump ${accession} --split-3 --split-spot --skip-technical
     """
 }

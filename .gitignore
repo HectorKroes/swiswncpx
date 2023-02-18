@@ -1,3 +1,5 @@
+data/SRA/rna_seq_data
+data/GDC/treated
 data/GDC/BRCA
 data/GDC/COAD
 data/GDC/LUAD
@@ -5,4 +7,5 @@ data/GDC/LUSC
 data/GDC/PRAD
 .nextflow.log
 .nextflow/
+results/
 work/

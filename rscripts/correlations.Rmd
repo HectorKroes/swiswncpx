@@ -79,32 +79,36 @@ COAD_GAS6_pc = as.numeric(min(COAD_GAS6_FPKM[COAD_GAS6_FPKM['V2']>0]))
 COAD_FPKM <- data.frame(SWINGN = as.numeric(unlist(COAD_SWINGN_FPKM['V2']))+COAD_SWINGN_pc,
                         GAS6 = as.numeric(unlist(COAD_GAS6_FPKM['V2']))+COAD_GAS6_pc)
 
-LUSC_SWIGN_GAS6_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) 
-LUSC_SWIGN_GAS6_plot <- LUSC_SWIGN_GAS6_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+LUSC_SWINGN_GAS6_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
 
-LUSC_SWIGN_PDGFRB_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(PDGFRB))) + geom_point() + theme_grey(base_size = 10)
-LUSC_SWIGN_PDGFRB_plot <- LUSC_SWIGN_PDGFRB_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+LUSC_SWINGN_PDGFRB_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(PDGFRB))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
 
-LUSC_SWIGN_COL1A1_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(COL1A1))) + geom_point() + theme_grey(base_size = 10)
-LUSC_SWIGN_COL1A1_plot <- LUSC_SWIGN_COL1A1_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+LUSC_SWINGN_COL1A1_plot <- ggplot(LUSC_FPKM, aes(x=log2(SWINGN), y=log2(COL1A1))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
 
-LUSC_plots <- ggarrange(LUSC_SWIGN_GAS6_plot, LUSC_SWIGN_PDGFRB_plot, LUSC_SWIGN_COL1A1_plot)
+LUSC_plots <- ggarrange(LUSC_SWINGN_GAS6_plot, LUSC_SWINGN_PDGFRB_plot, LUSC_SWINGN_COL1A1_plot)
 ggsave('LUSC.png', LUSC_plots)
 LUSC_plots
 
-BRCA_SWIGN_GAS6_plot <- ggplot(BRCA_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) 
-BRCA_SWIGN_GAS6_plot <- BRCA_SWIGN_GAS6_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+BRCA_SWINGN_GAS6_plot <- ggplot(BRCA_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10)+
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n') +
+  labs(title = "TCGA-BRCA", x = expression(paste("SWINGN [", log[2](FPKM), "]")), y = expression(paste("GAS6 [", log[2](FPKM), "]")))
 
-LUAD_SWIGN_GAS6_plot <- ggplot(LUAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) 
-LUAD_SWIGN_GAS6_plot <- LUAD_SWIGN_GAS6_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+LUAD_SWINGN_GAS6_plot <- ggplot(LUAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n') +
+  labs(title = "TCGA-LUAD", x = expression(paste("SWINGN [", log[2](FPKM), "]")), y = expression(paste("GAS6 [", log[2](FPKM), "]")))
 
-PRAD_SWIGN_GAS6_plot <- ggplot(PRAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) 
-PRAD_SWIGN_GAS6_plot <- PRAD_SWIGN_GAS6_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+PRAD_SWINGN_GAS6_plot <- ggplot(PRAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n') +
+  labs(title = "TCGA-PRAD", x = expression(paste("SWINGN [", log[2](FPKM), "]")), y = expression(paste("GAS6 [", log[2](FPKM), "]")))
 
-COAD_SWIGN_GAS6_plot <- ggplot(COAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) 
-COAD_SWIGN_GAS6_plot <- COAD_SWIGN_GAS6_plot + stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n')
+COAD_SWINGN_GAS6_plot <- ggplot(COAD_FPKM, aes(x=log2(SWINGN), y=log2(GAS6))) + geom_point() + theme_grey(base_size = 10) +
+  stat_cor(method="pearson", p.accuracy=1e-100, label.sep='\n') +
+  labs(title = "TCGA-COAD", x = expression(paste("SWINGN [", log[2](FPKM), "]")), y = expression(paste("GAS6 [", log[2](FPKM), "]")))
 
-GAS6_plots <- ggarrange(BRCA_SWIGN_GAS6_plot, LUAD_SWIGN_GAS6_plot, PRAD_SWIGN_GAS6_plot, COAD_SWIGN_GAS6_plot)
+GAS6_plots <- ggarrange(BRCA_SWINGN_GAS6_plot, LUAD_SWINGN_GAS6_plot, PRAD_SWINGN_GAS6_plot, COAD_SWINGN_GAS6_plot)
 ggsave('GAS6.png', GAS6_plots)
 GAS6_plots
 ```
